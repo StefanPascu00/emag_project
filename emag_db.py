@@ -34,6 +34,19 @@ def read_products(config: dict, table: str = "emag.products"):
             return products_list
 
 
+def execute_query(sql_query: str, config: dict):
+    try:
+        with ps.connect(**config) as conn:
+            with conn.cursor() as cursor:
+                cursor.execute(sql_query)
+                print("Successfully executed")
+                return cursor.statusmessage
+
+    except Exception as e:
+        print(f"Failure on reading on database. Error : {e}")
+        return False
+
+
 if __name__ == '__main__':
     config = read_config()
     admins = read_admins(config)

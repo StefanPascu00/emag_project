@@ -2,36 +2,13 @@
 <html>
 <head>
     <title>Emag Products</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: auto;
-            background-color: green;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-            background-color: red;
-        }
-        th {
-            background-color: green;
-        }
-        button {
-                background-color: #007bff;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                text-align: center;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+    <script src="{{url_for('static', filename='main.js')}}"></script>
 </head>
 <body>
-    <h1 style="text-align: center;">Available Products</h1>
+    <h1 style="text-align: center; color: black;" onclick="firstFunction()" id="titleID">Available Products</h1>
     <table>
         <tr>
             <th>Name</th>
@@ -46,9 +23,30 @@
         </tr>
         {% endfor %}
     </table>
-    <form action="/delog" method="GET">
+    <form action="/log_out" method="GET">
     <button type="submit"> Delogheaza </button>
     </form>
+    <br>
+    <br>
+
+    <button onclick="display_add_product_form()" id="button2" style="display: block;"> ADD Product </button><br>
+    <br>
+    <br>
+    <br>
+    <form id="add_product" action="/add_products" style="display: none" method="post">
+            <label for="product_name">Product name:</label>
+            <input type="text" id="product_name" name="product_name" required><br>
+
+            <label for="store">Store:</label>
+            <input type="text" id="store" name="store" required><br>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" required><br>
+
+            <button type="submit" id="send">Send</button>
+        </form>
+    <img src="/static/2560px-Logo_eMAG_(2019).svg.png" alt="EMAG Logo" id="logo_img_id">
+
 
 </body>
 </html>
